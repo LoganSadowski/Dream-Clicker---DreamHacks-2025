@@ -6,20 +6,20 @@ clicker.addEventListener('click', function()  {
 
     let id = null;
     let i = 0;
-    let size = 60;
+    let size = 500;
     clearInterval(id);
     id = setInterval(frame, 5);
     function frame() {
-    if (i == 40) {
+    if (i == 20) {
         clearInterval(id);
-    } else if (i < 20) {
-        size++;
+    } else if (i < 10) {
+        size += 5;
         clicker.style.height = size + 'px';
         clicker.style.width = size + 'px';
 
         i++;
     } else {
-        size--;
+        size -= 5;
         clicker.style.height = size + 'px';
         clicker.style.width = size + 'px';
 
