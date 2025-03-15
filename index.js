@@ -46,6 +46,14 @@ function pay(upgrade, cost, cost_multiplier) {
 // Increase amount of wealth gained per click
 var upgrade1_cost = 50
 var upgrade1_level = 0
+
+function reset_upgrade1() {
+    upgrade1_cost = 50
+    upgrade1_level = 0
+    click_value = 1
+    upgrade1.children[2].innerHTML = "Cost: " + upgrade1_cost
+    upgrade1.children[1].innerHTML = "Level: " + upgrade1_level
+}
 var upgrade1 = document.getElementById("upgrade1")
 upgrade1.addEventListener('click', function() {
     if (wealth >= upgrade1_cost) {
@@ -64,6 +72,15 @@ var auto_clicker_value = 0
 var auto_clicker_speed = 5000
 var click_interval = setInterval(0)
 
+function reset_upgrade2() {
+    upgrade2_cost = 100
+    upgrade2_level = 0         
+    auto_clicker_value = 0
+    upgrade2.children[2].innerHTML = "Cost: " + upgrade2_cost
+    upgrade2.children[1].innerHTML = "Level: " + upgrade2_level
+}
+
+
 // auto clicker upgrade
 var upgrade2 = document.getElementById("upgrade2");
 upgrade2.addEventListener('click', function() {
@@ -71,7 +88,7 @@ upgrade2.addEventListener('click', function() {
         upgrade2_cost = pay(upgrade2, upgrade2_cost, 1.2)
         upgrade2_level += prestige
         upgrade2.children[1].innerHTML = "Level: " + upgrade2_level
-        auto_clicker_value += prestige
+        auto_clicker_value += 10 * prestige
 
         clearInterval(click_interval)
         click_interval = setInterval(function() {
@@ -81,8 +98,17 @@ upgrade2.addEventListener('click', function() {
     }
 })
 
-var upgrade3_cost = 1000
+var upgrade3_cost = 100
 var upgrade3_level = 0
+
+function reset_upgrade3() {
+    upgrade3_cost = 100
+    upgrade3_level = 0
+    auto_clicker_speed = 5000
+    upgrade3.children[2].innerHTML = "Cost: " + upgrade3_cost
+    upgrade3.children[1].innerHTML = "Level: " + upgrade3_level
+}
+
 var upgrade3 = document.getElementById("upgrade3")
 upgrade3.addEventListener('click', function() {
     if (wealth >= upgrade3_cost) {
@@ -107,5 +133,11 @@ prestige1.addEventListener('click', function() {
         prestige++
         prestige1.children[1].innerHTML = "Prestige: " + (prestige - 1)
         prestige1.children[0].innerHTML = "Enter sleep stage " + prestige
+        if (prestige === 2) {
+            clicker.setAttribute("src", "images/moon.png")
+            reset_upgrade1()
+            reset_upgrade2()
+            reset_upgrade3()
+        }
     }
 })
