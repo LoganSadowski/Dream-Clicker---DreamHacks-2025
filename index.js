@@ -54,7 +54,7 @@ upgrade1.addEventListener('click', function() {
 // auto clicker values
 var upgrade2_cost = 100
 var auto_clicker_value = 0
-var auto_clicker_speed = 1000
+var auto_clicker_speed = 5000
 var click_interval = setInterval(0)
 
 // auto clicker upgrade
@@ -63,6 +63,21 @@ upgrade2.addEventListener('click', function() {
     if (wealth >= upgrade2_cost) {
         upgrade2_cost = pay(upgrade2, upgrade2_cost)
         auto_clicker_value++
+
+        clearInterval(click_interval)
+        click_interval = setInterval(function() {
+            wealth += auto_clicker_value
+            counter.innerHTML = wealth
+        }, auto_clicker_speed)
+    }
+})
+
+var upgrade3_cost = 100
+var upgrade3 = document.getElementById("upgrade3")
+upgrade3.addEventListener('click', function() {
+    if (wealth >= upgrade3_cost) {
+        upgrade3_cost = pay(upgrade3, upgrade3_cost)
+        auto_clicker_speed -= 100
 
         clearInterval(click_interval)
         click_interval = setInterval(function() {
