@@ -10,10 +10,10 @@ clicker.addEventListener('click', function()  {
     clearInterval(id);
     id = setInterval(frame, 5);
     function frame() {
-    if (i === 20) {
+    if (i === 15) {
         clearInterval(id);
-    } else if (i < 10) {
-        size += 5;
+    } else if (i < 5) {
+        size += 10;
         clicker.style.height = size + 'px';
         clicker.style.width = size + 'px';
 
