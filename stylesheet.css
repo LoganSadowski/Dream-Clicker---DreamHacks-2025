@@ -8,3 +8,7 @@
     border: 3px solid black;
     cursor: pointer;
 }
+
+body {
+    font-family: Gabriola, "Lucida Calligraphy", serif;
+}
