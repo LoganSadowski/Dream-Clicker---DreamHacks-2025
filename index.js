@@ -40,7 +40,7 @@ function pay(upgrade, cost, cost_multiplier) {
     wealth -= cost
     cost = Math.ceil(cost * cost_multiplier)
     counter.innerHTML = wealth
-    upgrade.children[2].innerHTML = "Cost: " + cost
+    upgrade.children[3].innerHTML = "Cost: " + cost
     return cost
 }
 
@@ -52,15 +52,15 @@ function reset_upgrade1() {
     upgrade1_cost = 50
     upgrade1_level = 0
     click_value = 1
-    upgrade1.children[2].innerHTML = "Cost: " + upgrade1_cost
-    upgrade1.children[1].innerHTML = "Level: " + upgrade1_level
+    upgrade1.children[3].innerHTML = "Cost: " + upgrade1_cost
+    upgrade1.children[2].innerHTML = "Level: " + upgrade1_level
 }
 var upgrade1 = document.getElementById("upgrade1")
 upgrade1.addEventListener('click', function() {
     if (wealth >= upgrade1_cost) {
         upgrade1_cost = pay(upgrade1, upgrade1_cost, 1.2)
         upgrade1_level += prestige
-        upgrade1.children[1].innerHTML = "Level: " + upgrade1_level
+        upgrade1.children[2].innerHTML = "Level: " + upgrade1_level
         click_value += prestige
     }
 })
@@ -77,8 +77,8 @@ function reset_upgrade2() {
     upgrade2_cost = 100
     upgrade2_level = 0         
     auto_clicker_value = 0
-    upgrade2.children[2].innerHTML = "Cost: " + upgrade2_cost
-    upgrade2.children[1].innerHTML = "Level: " + upgrade2_level
+    upgrade2.children[3].innerHTML = "Cost: " + upgrade2_cost
+    upgrade2.children[2].innerHTML = "Level: " + upgrade2_level
 }
 
 
@@ -88,7 +88,7 @@ upgrade2.addEventListener('click', function() {
     if (wealth >= upgrade2_cost) {
         upgrade2_cost = pay(upgrade2, upgrade2_cost, 1.2)
         upgrade2_level += prestige
-        upgrade2.children[1].innerHTML = "Level: " + upgrade2_level
+        upgrade2.children[2].innerHTML = "Level: " + upgrade2_level
         auto_clicker_value += 10 * prestige
 
         clearInterval(click_interval)
@@ -106,8 +106,8 @@ function reset_upgrade3() {
     upgrade3_cost = 100
     upgrade3_level = 0
     auto_clicker_speed = 5000
-    upgrade3.children[2].innerHTML = "Cost: " + upgrade3_cost
-    upgrade3.children[1].innerHTML = "Level: " + upgrade3_level
+    upgrade3.children[3].innerHTML = "Cost: " + upgrade3_cost
+    upgrade3.children[2].innerHTML = "Level: " + upgrade3_level
 }
 
 var upgrade3 = document.getElementById("upgrade3")
@@ -115,8 +115,37 @@ upgrade3.addEventListener('click', function() {
     if (wealth >= upgrade3_cost) {
         upgrade3_cost = pay(upgrade3, upgrade3_cost, 1.2)
         upgrade3_level += prestige
-        upgrade3.children[1].innerHTML = "Level: " + upgrade3_level
+        upgrade3.children[2].innerHTML = "Level: " + upgrade3_level
         auto_clicker_speed -= 100 * prestige
+
+        clearInterval(click_interval)
+        click_interval = setInterval(function() {
+            wealth += auto_clicker_value
+            counter.innerHTML = wealth
+        }, auto_clicker_speed)
+    }
+})
+
+var upgrade4_cost = 100
+var upgrade4_level = 0
+
+function reset_upgrade4() {
+    upgrade4_cost = 100
+    upgrade4_level = 0         
+    auto_clicker_value = 0
+    upgrade4.children[3].innerHTML = "Cost: " + upgrade4_cost
+    upgrade4.children[2].innerHTML = "Level: " + upgrade4_level
+}
+
+
+// auto clicker upgrade
+var upgrade4 = document.getElementById("upgrade4");
+upgrade4.addEventListener('click', function() {
+    if (wealth >= upgrade4_cost) {
+        upgrade4_cost = pay(upgrade4, upgrade4_cost, 1.2)
+        upgrade4_level += prestige
+        upgrade4.children[2].innerHTML = "Level: " + upgrade4_level
+        auto_clicker_value += 10 * prestige
 
         clearInterval(click_interval)
         click_interval = setInterval(function() {
@@ -132,7 +161,7 @@ prestige1.addEventListener('click', function() {
     if (wealth >= prestige1_cost) {
         pay(prestige1, prestige1_cost, 10)   
         prestige++
-        prestige1.children[1].innerHTML = "Prestige: " + (prestige - 1)
+        prestige1.children[2].innerHTML = "Prestige: " + (prestige - 1)
         prestige1.children[0].innerHTML = "Enter sleep stage " + prestige
         if (prestige === 2) {
             var stars = document.getElementById("star_group")
@@ -140,9 +169,12 @@ prestige1.addEventListener('click', function() {
             body.style.background = "radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)"
 
             clicker.setAttribute("src", "images/moon.png")
+
             reset_upgrade1()
             reset_upgrade2()
             reset_upgrade3()
+
+            upgrade4.removeAttribute("hidden")
         }
     }
 })
