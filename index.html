@@ -18,7 +18,9 @@
         <div id="stars3"></div>
     </div>
     <div class="d-flex justify-content-between flex-row">
-        <div style="width: 15%"></div>
+        <div id="eyes" style="width: 25vw" class="d-flex flex-column justify-content-center align-items-end">
+            <img style="image-rendering: pixelated; width: 20vw" draggable="false" src="images/eye_blink_ver2.gif" alt="look">
+        </div>
         <div class="d-flex flex-column min-vh-100 justify-content-around align-items-center">
             <div style="width: 60px; height: 75px" id="bound">
                 <p style="position: relative" id="counter" class="display-2 fw-semibold text-light text-center mover">0</p>
@@ -28,11 +30,8 @@
             </div>
             <div></div>
         </div>
-        <div id="eyes" class="d-flex flex-column justify-content-center align-items-center">
-            <img style="image-rendering: pixelated" draggable="false" src="images/eye_blink_ver2.gif" alt="look">
-        </div>
-        <div style="width: 15%" class="d-flex flex-column min-vh-100 justify-content-center align-items-end">
-            <button style="width: 25%" class="btn btn-light rounded-0 fs-3 min-vh-100" type="button" data-bs-toggle="offcanvas" data-bs-target="#upgrade-menu" aria-controls="upgrade-menu"></button>
+        <div style="width: 25vw" class="d-flex flex-column min-vh-100 justify-content-center align-items-end">
+            <button style="width: 60px" class="btn btn-light rounded-0 fs-3 min-vh-100" type="button" data-bs-toggle="offcanvas" data-bs-target="#upgrade-menu" aria-controls="upgrade-menu"></button>
             <div style="width: 50px; height: 50px; transform: rotate(-90deg); pointer-events: none" class="position-absolute align-items-end fs-3 text">
                 <p>Upgrades</p>
             </div>
