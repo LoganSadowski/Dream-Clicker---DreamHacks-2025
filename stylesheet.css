@@ -4,7 +4,15 @@
     cursor: pointer;
 }
 
+#upgrade-menu {
+    font-size: larger;
+}
+
 .upgrade {
-    border: 3px solid black;
+    border-bottom: 2px solid gray;
     cursor: pointer;
+}
+
+body {
+    font-family: Gabriola, "Lucida Calligraphy", serif;
 }

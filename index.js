@@ -12,6 +12,8 @@ clicker.addEventListener('click', function()  {
     let id = null
     let i = 0
     let size = 500
+    let r = Math.round(Math.random() * 20) - 10
+    clicker.style.transform = 'rotate(' + r + 'deg)'
     clearInterval(id)
     id = setInterval(frame, 5)
     function frame() {
