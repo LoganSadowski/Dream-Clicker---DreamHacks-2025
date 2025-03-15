@@ -72,7 +72,7 @@ upgrade1.addEventListener('click', function() {
 let upgrade2_cost = 100;
 let upgrade2_level = 0;
 let auto_clicker_value = 0;
-let auto_clicker_speed = 5000;
+let auto_clicker_speed = 2000;
 let click_interval = setInterval(0);
 
 
@@ -91,7 +91,7 @@ upgrade2.addEventListener('click', function() {
         upgrade2_cost = pay(upgrade2, upgrade2_cost, 1.2)
         upgrade2_level += prestige
         upgrade2.children[2].innerHTML = "Level: " + upgrade2_level
-        auto_clicker_value += 10 * prestige
+        auto_clicker_value += 20 * prestige
 
         clearInterval(click_interval)
         click_interval = setInterval(function() {
@@ -109,17 +109,21 @@ const upgrade3 = document.getElementById("upgrade3");
 function reset_upgrade3() {
     upgrade3_cost = 100
     upgrade3_level = 0
-    auto_clicker_speed = 5000
+    auto_clicker_speed = 2000
     upgrade3.children[3].innerHTML = "Cost: " + upgrade3_cost
     upgrade3.children[2].innerHTML = "Level: " + upgrade3_level
 }
 
 upgrade3.addEventListener('click', function() {
-    if (wealth >= upgrade3_cost) {
+    if (wealth >= upgrade3_cost && auto_clicker_speed > 200) {
         upgrade3_cost = pay(upgrade3, upgrade3_cost, 1.2)
         upgrade3_level += prestige
         upgrade3.children[2].innerHTML = "Level: " + upgrade3_level
-        auto_clicker_speed -= 100 * prestige
+        auto_clicker_speed -= 200 * prestige
+
+        if (auto_clicker_speed <= 200) {
+            upgrade3.children[3].innerHTML = "Fully Upgraded"
+        }
 
         clearInterval(click_interval)
         click_interval = setInterval(function() {
@@ -148,7 +152,7 @@ upgrade4.addEventListener('click', function() {
         upgrade4_cost = pay(upgrade4, upgrade4_cost, 1.2)
         upgrade4_level += prestige
         upgrade4.children[2].innerHTML = "Level: " + upgrade4_level
-        auto_clicker_value += 10 * prestige
+        auto_clicker_value += 50 * prestige
 
         clearInterval(click_interval)
         click_interval = setInterval(function() {
@@ -164,8 +168,14 @@ prestige1.addEventListener('click', function() {
     if (wealth >= prestige1_cost) {
         pay(prestige1, prestige1_cost, 10)   
         prestige++
+        wealth = 0
+        counter.innerHTML = wealth
         prestige1.children[2].innerHTML = "Prestige: " + (prestige - 1)
         prestige1.children[0].innerHTML = "Enter sleep stage " + prestige
+        
+        reset_upgrade1()
+        reset_upgrade2()
+        reset_upgrade3()
         if (prestige === 2) {
             const stars = document.getElementById("star_group");
             body.style.opacity = "0"
@@ -175,10 +185,6 @@ prestige1.addEventListener('click', function() {
             body.style.background = "radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)"
 
             clicker.setAttribute("src", "images/moon.png")
-
-            reset_upgrade1()
-            reset_upgrade2()
-            reset_upgrade3()
 
             upgrade4.removeAttribute("hidden")
             }, 1000)
