@@ -32,7 +32,16 @@ clicker.addEventListener('click', function()  {
   }
 })
 
-var upgrade1_cost = 1
+function pay(upgrade, cost) {
+    wealth -= cost
+    cost = Math.ceil(cost * 1.2)
+    counter.innerHTML = wealth
+    upgrade.children[1].innerHTML = "Cost: " + cost
+    return cost
+}
+
+// Increase amount of wealth gained per click
+var upgrade1_cost = 50
 var upgrade1 = document.getElementById("upgrade1")
 upgrade1.addEventListener('click', function() {
     if (wealth >= upgrade1_cost) {
@@ -41,10 +50,25 @@ upgrade1.addEventListener('click', function() {
     }   
 })
 
-function pay(upgrade, cost) {
-    wealth -= cost
-    cost = Math.ceil(cost * 1.2)
-    counter.innerHTML = wealth
-    upgrade.children[1].innerHTML = "Cost: " + cost
-    return cost
-}
+
+// auto clicker values
+var upgrade2_cost = 100
+var auto_clicker_value = 0
+var auto_clicker_speed = 1000
+var click_interval = setInterval(0)
+
+// auto clicker upgrade
+var upgrade2 = document.getElementById("upgrade2");
+upgrade2.addEventListener('click', function() {
+    if (wealth >= upgrade2_cost) {
+        upgrade2_cost = pay(upgrade2, upgrade2_cost)
+        auto_clicker_value++
+
+        clearInterval(click_interval)
+        click_interval = setInterval(function() {
+            wealth += auto_clicker_value
+            counter.innerHTML = wealth
+        }, auto_clicker_speed)
+    }
+})
+
