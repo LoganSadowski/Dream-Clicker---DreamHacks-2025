@@ -172,12 +172,12 @@ prestige1.addEventListener('click', function() {
         counter.innerHTML = wealth
         prestige1.children[2].innerHTML = "Prestige: " + (prestige - 1)
         prestige1.children[0].innerHTML = "Enter sleep stage " + prestige
-        
+
         reset_upgrade1()
         reset_upgrade2()
         reset_upgrade3()
         if (prestige === 2) {
-            const stars = document.getElementById("star_group");
+            const stars = document.getElementById("star_group")
             body.style.opacity = "0"
 
             setTimeout(function () {
@@ -185,6 +185,8 @@ prestige1.addEventListener('click', function() {
             body.style.background = "radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)"
 
             clicker.setAttribute("src", "images/moon.png")
+            const eye = document.getElementById("eye")
+            eye.setAttribute("src", "images/eye_closed.png")
 
             upgrade4.removeAttribute("hidden")
             }, 1000)
