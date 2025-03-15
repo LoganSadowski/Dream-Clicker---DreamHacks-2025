@@ -1,5 +1,6 @@
 var clicker = document.getElementById("clicker")
 var counter = document.getElementById("counter")
+var body = document.getElementsByTagName("body")[0];
 
 var wealth = 0
 var click_value = 1
@@ -134,6 +135,10 @@ prestige1.addEventListener('click', function() {
         prestige1.children[1].innerHTML = "Prestige: " + (prestige - 1)
         prestige1.children[0].innerHTML = "Enter sleep stage " + prestige
         if (prestige === 2) {
+            var stars = document.getElementById("star_group")
+            stars.removeAttribute("hidden")
+            body.style.background = "radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)"
+
             clicker.setAttribute("src", "images/moon.png")
             reset_upgrade1()
             reset_upgrade2()
