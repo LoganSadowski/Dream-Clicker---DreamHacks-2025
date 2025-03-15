@@ -2,6 +2,7 @@
     height: 500px;
     width: 500px;
     cursor: pointer;
+    transition: transform 0.1s;
 }
 
 #upgrade-menu {
@@ -15,4 +16,9 @@
 
 body {
     font-family: Gabriola, "Lucida Calligraphy", serif;
+    transition: opacity 1s;
+}
+
+html {
+    background-color: black;
 }
