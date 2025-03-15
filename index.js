@@ -40,7 +40,7 @@ function pay(upgrade, cost, cost_multiplier) {
     wealth -= cost
     cost = Math.ceil(cost * cost_multiplier)
     counter.innerHTML = wealth
-    upgrade.children[2].innerHTML = "Cost: " + cost
+    upgrade.children[3].innerHTML = "Cost: " + cost
     return cost
 }
 
@@ -54,15 +54,15 @@ function reset_upgrade1() {
     upgrade1_cost = 50
     upgrade1_level = 0
     click_value = 1
-    upgrade1.children[2].innerHTML = "Cost: " + upgrade1_cost
-    upgrade1.children[1].innerHTML = "Level: " + upgrade1_level
+    upgrade1.children[3].innerHTML = "Cost: " + upgrade1_cost
+    upgrade1.children[2].innerHTML = "Level: " + upgrade1_level
 }
 
 upgrade1.addEventListener('click', function() {
     if (wealth >= upgrade1_cost) {
         upgrade1_cost = pay(upgrade1, upgrade1_cost, 1.2)
         upgrade1_level += prestige
-        upgrade1.children[1].innerHTML = "Level: " + upgrade1_level
+        upgrade1.children[2].innerHTML = "Level: " + upgrade1_level
         click_value += prestige
     }
 })
@@ -83,14 +83,14 @@ function reset_upgrade2() {
     upgrade2_cost = 100
     upgrade2_level = 0         
     auto_clicker_value = 0
-    upgrade2.children[2].innerHTML = "Cost: " + upgrade2_cost
-    upgrade2.children[1].innerHTML = "Level: " + upgrade2_level
+    upgrade2.children[3].innerHTML = "Cost: " + upgrade2_cost
+    upgrade2.children[2].innerHTML = "Level: " + upgrade2_level
 }
 upgrade2.addEventListener('click', function() {
     if (wealth >= upgrade2_cost) {
         upgrade2_cost = pay(upgrade2, upgrade2_cost, 1.2)
         upgrade2_level += prestige
-        upgrade2.children[1].innerHTML = "Level: " + upgrade2_level
+        upgrade2.children[2].innerHTML = "Level: " + upgrade2_level
         auto_clicker_value += 10 * prestige
 
         clearInterval(click_interval)
@@ -118,7 +118,7 @@ upgrade3.addEventListener('click', function() {
     if (wealth >= upgrade3_cost) {
         upgrade3_cost = pay(upgrade3, upgrade3_cost, 1.2)
         upgrade3_level += prestige
-        upgrade3.children[1].innerHTML = "Level: " + upgrade3_level
+        upgrade3.children[2].innerHTML = "Level: " + upgrade3_level
         auto_clicker_speed -= 100 * prestige
 
         clearInterval(click_interval)
