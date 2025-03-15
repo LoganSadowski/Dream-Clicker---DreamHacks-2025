@@ -2,8 +2,8 @@ var clicker = document.getElementById("clicker")
 var counter = document.getElementById("counter")
 
 var wealth = 0
-var level = 0
 var click_value = 1
+var prestige = 1
 
 clicker.addEventListener('click', function()  {
     wealth += click_value
@@ -36,7 +36,6 @@ clicker.addEventListener('click', function()  {
 function pay(upgrade, cost, cost_multiplier) {
     wealth -= cost
     cost = Math.ceil(cost * cost_multiplier)
-    level++
     counter.innerHTML = wealth
     upgrade.children[2].innerHTML = "Cost: " + cost
     return cost
@@ -49,9 +48,9 @@ var upgrade1 = document.getElementById("upgrade1")
 upgrade1.addEventListener('click', function() {
     if (wealth >= upgrade1_cost) {
         upgrade1_cost = pay(upgrade1, upgrade1_cost, 1.2)
-        upgrade1_level++
+        upgrade1_level += prestige
         upgrade1.children[1].innerHTML = "Level: " + upgrade1_level
-        click_value++
+        click_value += prestige
     }
 })
 
@@ -68,9 +67,9 @@ var upgrade2 = document.getElementById("upgrade2");
 upgrade2.addEventListener('click', function() {
     if (wealth >= upgrade2_cost) {
         upgrade2_cost = pay(upgrade2, upgrade2_cost, 1.2)
-        upgrade2_level++
+        upgrade2_level += prestige
         upgrade2.children[1].innerHTML = "Level: " + upgrade2_level
-        auto_clicker_value++
+        auto_clicker_value += prestige
 
         clearInterval(click_interval)
         click_interval = setInterval(function() {
@@ -86,9 +85,9 @@ var upgrade3 = document.getElementById("upgrade3")
 upgrade3.addEventListener('click', function() {
     if (wealth >= upgrade3_cost) {
         upgrade3_cost = pay(upgrade3, upgrade3_cost, 1.2)
-        upgrade3_level++
+        upgrade3_level += prestige
         upgrade3.children[1].innerHTML = "Level: " + upgrade3_level
-        auto_clicker_speed -= 100
+        auto_clicker_speed -= 100 * prestige
 
         clearInterval(click_interval)
         click_interval = setInterval(function() {
@@ -98,5 +97,13 @@ upgrade3.addEventListener('click', function() {
     }
 })
 
-// var prestige1_cost = 100000
-// var prestige1 = document.getElementById("prestige1")
+var prestige1_cost = 100000
+var prestige1 = document.getElementById("prestige1")
+prestige1.addEventListener('click', function() {
+    if (wealth >= prestige1_cost) {
+        pay(prestige1, prestige1_cost, 10)   
+        prestige++
+        prestige1.children[1].innerHTML = "Prestige: " + (prestige - 1)
+        prestige1.children[0].innerHTML = "Enter sleep stage " + prestige
+    }
+})
