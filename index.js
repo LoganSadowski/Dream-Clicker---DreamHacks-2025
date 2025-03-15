@@ -142,36 +142,7 @@ function reset_upgrade4() {
 
 
 // auto clicker upgrade
-var upgrade4 = document.getElementById("upgrade4");
-upgrade4.addEventListener('click', function() {
-    if (wealth >= upgrade4_cost) {
-        upgrade4_cost = pay(upgrade4, upgrade4_cost, 1.2)
-        upgrade4_level += prestige
-        upgrade4.children[2].innerHTML = "Level: " + upgrade4_level
-        auto_clicker_value += 10 * prestige
-
-        clearInterval(click_interval)
-        click_interval = setInterval(function() {
-            wealth += auto_clicker_value
-            counter.innerHTML = wealth
-        }, auto_clicker_speed)
-    }
-})
-
-var upgrade4_cost = 100
-var upgrade4_level = 0
-
-function reset_upgrade4() {
-    upgrade4_cost = 100
-    upgrade4_level = 0         
-    auto_clicker_value = 0
-    upgrade4.children[3].innerHTML = "Cost: " + upgrade4_cost
-    upgrade4.children[2].innerHTML = "Level: " + upgrade4_level
-}
-
-
-// auto clicker upgrade
-var upgrade4 = document.getElementById("upgrade4");
+const upgrade4 = document.getElementById("upgrade4");
 upgrade4.addEventListener('click', function() {
     if (wealth >= upgrade4_cost) {
         upgrade4_cost = pay(upgrade4, upgrade4_cost, 1.2)
@@ -208,13 +179,13 @@ prestige1.addEventListener('click', function() {
             reset_upgrade1()
             reset_upgrade2()
             reset_upgrade3()
+
+            upgrade4.removeAttribute("hidden")
             }, 1000)
 
             setTimeout(function () {
                 body.style.opacity = "1"
             }, 1000)
-
-            upgrade4.removeAttribute("hidden")
         }
     }
 })
