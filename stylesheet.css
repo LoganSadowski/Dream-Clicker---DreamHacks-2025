@@ -3,3 +3,8 @@
     width: 500px;
     cursor: pointer;
 }
+
+.upgrade {
+    border: 3px solid black;
+    cursor: pointer;
+}
